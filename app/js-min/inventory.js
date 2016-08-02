@@ -1,1 +1,0 @@
-"use strict";var Pokemon=function(){function o(){}return o}();exports.Pokemon=Pokemon;
