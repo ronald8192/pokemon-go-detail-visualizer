@@ -1,0 +1,7 @@
+.idea/
+node_modules/
+typings/
+app/css/
+app/css-min/
+app/js/
+app/js-min/
