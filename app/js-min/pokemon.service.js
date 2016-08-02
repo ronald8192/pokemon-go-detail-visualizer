@@ -1,0 +1,1 @@
+"use strict";require("rxjs/add/operator/toPromise");var PokemonService=function(){function e(){}return e}();exports.PokemonService=PokemonService;

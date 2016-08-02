@@ -1,7 +1,10 @@
 .idea/
-node_modules/
+gulpfile.js
+tsconfig.json
+typings.json
 typings/
 app/css/
-app/css-min/
+app/scss/
 app/js/
-app/js-min/
+app/ts/
+**/*.map
