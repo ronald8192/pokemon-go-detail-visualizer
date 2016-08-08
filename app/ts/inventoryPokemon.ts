@@ -14,4 +14,5 @@ export class InventoryPokemon{
     height:number;
     weight:number;
     fav:boolean;
+    created_at:number;
 }

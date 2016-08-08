@@ -30,7 +30,7 @@ export class InventoryComponent implements OnInit{
             try {
                 pokemons = JSON.parse(this.jsonString);
                 for(let pokemon of pokemons){
-                    pokemon.iv = (pokemon.iv_a + pokemon.iv_d + pokemon.iv_s)/45;
+                    // pokemon.iv = (pokemon.iv_a + pokemon.iv_d + pokemon.iv_s)/45;
                     pokemon.name = PokemonData[pokemon.poke_id-1].name;
                 }
                 this.pokemons = this.sortPokemonBy(pokemons, "iv");

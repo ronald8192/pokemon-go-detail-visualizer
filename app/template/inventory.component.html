@@ -14,12 +14,12 @@
             <textarea class="form-control" id="inventory-json" [(ngModel)]="jsonString" (keyup)="doCalculate()" placeholder='[{"id":81,"cp":105,"move_1":206,"move_2":72,"height":0.24,"weight":3.41,"individual_attack":9,"individual_defense":11,"individual_stamina":6,"cp_multiplier":0.2902,"favorite":false,"nickname":null},{"id":17,"cp":205,"move_1":210,"move_2":80,"height":1.15,"weight":29.33,"individual_attack":1,"individual_defense":11,"individual_stamina":7,"cp_multiplier":0.3492,"favorite":false,"nickname":"Pidgeotto42"},{"id":101,"cp":301,"move_1":221,"move_2":35,"height":1.24,"weight":85.16,"individual_attack":15,"individual_defense":9,"individual_stamina":3,"cp_multiplier":0.3492,"favorite":false,"nickname":"Electrode60"},{"id":77,"cp":284,"move_1":209,"move_2":21,"height":0.74,"weight":21.82,"individual_attack":11,"individual_defense":11,"individual_stamina":14,"cp_multiplier":0.3492,"favorite":true,"nickname":"Ponyta80"},{"id":39,"cp":268,"move_1":238,"move_2":88,"height":0.62,"weight":9.49,"individual_attack":3,"individual_defense":13,"individual_stamina":0,"cp_multiplier":0.4628,"favorite":false,"nickname":null},{"id":118,"cp":281,"move_1":216,"move_2":58,"height":0.54,"weight":14.88,"individual_attack":14,"individual_defense":10,"individual_stamina":5,"cp_multiplier":0.4431,"favorite":false,"nickname":"Goldeen64.44"}]'>
 
             </textarea>
-            <div id="inventory-calc-btn" class="input-group-addon" (click)="doCalculate()">Calculate</div>
+            <div id="inventory-calc-btn" class="input-group-addon" (click)="doCalculate()">Show</div>
         </div>
     </div>
 </form>
 
-<h4 *ngIf="pokemons.length>0">Click title to sort (except Nickname)</h4>
+<h4 *ngIf="pokemons.length>0">Click title to sort</h4>
 <div id="summary-container" class="row panel panel-default" *ngIf="pokemons.length>0" >
 
     <table class="table table-striped table-hover panel-body">
@@ -27,7 +27,7 @@
         <tr>
             <th (click)="sortPokemonBy(pokemons, 'poke_id')">ID</th>
             <th (click)="sortPokemonBy(pokemons, 'name')">Name</th>
-            <th>Nickname</th>
+            <th (click)="sortPokemonBy(pokemons, 'nickname')">Nickname</th>
             <th (click)="sortPokemonBy(pokemons, 'lv')">LV</th>
             <th (click)="sortPokemonBy(pokemons, 'cp')">CP</th>
             <th (click)="sortPokemonBy(pokemons, 'iv')">IV Score</th>
@@ -40,6 +40,7 @@
             <th (click)="sortPokemonBy(pokemons, 'fav')">Favourite</th>
             <th (click)="sortPokemonBy(pokemons, 'move2')">Move 1</th>
             <th (click)="sortPokemonBy(pokemons, 'move1')">Move 2</th>
+            <th (click)="sortPokemonBy(pokemons, 'created_at')">Create Time</th>
         </tr>
         </thead>
         <tr *ngFor="let pokemon of pokemons">
@@ -58,6 +59,7 @@
             <td>{{pokemon.fav?"Yes":"No"}}</td>
             <td>{{pokemon.move_1}}</td>
             <td>{{pokemon.move_2}}</td>
+            <td>{{pokemon.created_at | date:"dd-MMM HH:mm a"}}</td>
         </tr>
     </table>
 </div>
