@@ -38,14 +38,14 @@
             <th (click)="sortPokemonBy(pokemons, 'height')">Height(m)</th>
             <th (click)="sortPokemonBy(pokemons, 'weight')">Weight(KG)</th>
             <th (click)="sortPokemonBy(pokemons, 'fav')">Favourite</th>
-            <th (click)="sortPokemonBy(pokemons, 'move2')">Move 1</th>
-            <th (click)="sortPokemonBy(pokemons, 'move1')">Move 2</th>
+            <th>Move 1</th>
+            <th>Move 2</th>
             <th (click)="sortPokemonBy(pokemons, 'created_at')">Create Time</th>
         </tr>
         </thead>
         <tr *ngFor="let pokemon of pokemons">
             <td>{{pokemon.poke_id}}</td>
-            <td>{{pokemon.name}}</td>
+            <td><img src="app/img/pokemon/{{pokemon.poke_id}}.png" class="poke-img" />{{pokemon.name}}</td>
             <td [class.text-muted]="!pokemon.nickname">{{pokemon.nickname?pokemon.nickname:'--'}}</td>
             <td>{{pokemon.lv}}</td>
             <td>{{pokemon.cp}}</td>
