@@ -25,33 +25,39 @@
     <table class="table table-striped table-hover panel-body">
         <thead>
         <tr>
-            <th (click)="sortPokemonBy(pokemons, 'id')">ID</th>
+            <th (click)="sortPokemonBy(pokemons, 'poke_id')">ID</th>
             <th (click)="sortPokemonBy(pokemons, 'name')">Name</th>
             <th>Nickname</th>
+            <th (click)="sortPokemonBy(pokemons, 'lv')">LV</th>
             <th (click)="sortPokemonBy(pokemons, 'cp')">CP</th>
-            <th (click)="sortPokemonBy(pokemons, 'individual_attack')">IV-Attack</th>
-            <th (click)="sortPokemonBy(pokemons, 'individual_defense')">IV-Defense</th>
-            <th (click)="sortPokemonBy(pokemons, 'individual_stamina')">IV-Stamina</th>
-            <th (click)="sortPokemonBy(pokemons, 'perfection')">Perfection</th>
-            <th (click)="sortPokemonBy(pokemons, 'cp_multiplier')">CP Multiplier</th>
+            <th (click)="sortPokemonBy(pokemons, 'iv')">IV Score</th>
+            <th (click)="sortPokemonBy(pokemons, 'iv_a')">IV-Attack</th>
+            <th (click)="sortPokemonBy(pokemons, 'iv_d')">IV-Defense</th>
+            <th (click)="sortPokemonBy(pokemons, 'iv_s')">IV-Stamina</th>
+            <th (click)="sortPokemonBy(pokemons, 'cp_mult')">CP Multiplier</th>
             <th (click)="sortPokemonBy(pokemons, 'height')">Height(m)</th>
             <th (click)="sortPokemonBy(pokemons, 'weight')">Weight(KG)</th>
-            <th (click)="sortPokemonBy(pokemons, 'favorite')">Favourite</th>
+            <th (click)="sortPokemonBy(pokemons, 'fav')">Favourite</th>
+            <th (click)="sortPokemonBy(pokemons, 'move2')">Move 1</th>
+            <th (click)="sortPokemonBy(pokemons, 'move1')">Move 2</th>
         </tr>
         </thead>
         <tr *ngFor="let pokemon of pokemons">
-            <td>{{pokemon.id}}</td>
+            <td>{{pokemon.poke_id}}</td>
             <td>{{pokemon.name}}</td>
             <td [class.text-muted]="!pokemon.nickname">{{pokemon.nickname?pokemon.nickname:'--'}}</td>
+            <td>{{pokemon.lv}}</td>
             <td>{{pokemon.cp}}</td>
-            <td>{{pokemon.individual_attack}}</td>
-            <td>{{pokemon.individual_defense}}</td>
-            <td>{{pokemon.individual_stamina}}</td>
-            <td>{{pokemon.perfection | percent}}</td>
-            <td>{{pokemon.cp_multiplier}}</td>
+            <td>{{pokemon.iv | percent}}</td>
+            <td>{{pokemon.iv_a}}</td>
+            <td>{{pokemon.iv_d}}</td>
+            <td>{{pokemon.iv_s}}</td>
+            <td>{{pokemon.cp_mult}}</td>
             <td>{{pokemon.height}}</td>
             <td>{{pokemon.weight}}</td>
-            <td>{{pokemon.favorite?"Yes":"No"}}</td>
+            <td>{{pokemon.fav?"Yes":"No"}}</td>
+            <td>{{pokemon.move_1}}</td>
+            <td>{{pokemon.move_2}}</td>
         </tr>
     </table>
 </div>

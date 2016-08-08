@@ -13,7 +13,7 @@ export class InventoryComponent implements OnInit{
     pokemons:InventoryPokemon[] = [];
     errorMessage:string = "";
 
-    orderBy:string = "id";
+    orderBy:string = "poke_id";
     orderAsc:boolean = true;
 
     constructor(){
@@ -30,10 +30,10 @@ export class InventoryComponent implements OnInit{
             try {
                 pokemons = JSON.parse(this.jsonString);
                 for(let pokemon of pokemons){
-                    pokemon.perfection = (pokemon.individual_attack + pokemon.individual_defense + pokemon.individual_stamina)/45;
-                    pokemon.name = PokemonData[pokemon.id-1].name;
+                    pokemon.iv = (pokemon.iv_a + pokemon.iv_d + pokemon.iv_s)/45;
+                    pokemon.name = PokemonData[pokemon.poke_id-1].name;
                 }
-                this.pokemons = this.sortPokemonBy(pokemons, "perfection");
+                this.pokemons = this.sortPokemonBy(pokemons, "iv");
             }catch (e){
                 console.log(e);
                 this.errorMessage = "Invalid JSON!"

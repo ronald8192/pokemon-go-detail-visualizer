@@ -1,16 +1,17 @@
 export class InventoryPokemon{
-    id: number;
-    cp: number;
+    poke_id: number;
     name:string;
+    nickname:string;
+    lv:number;
+    cp: number;
     move_1:string;
     move_2:string;
+    iv:number;
+    iv_a:number;
+    iv_d:number;
+    iv_s:number;
+    cp_mult:number;
     height:number;
     weight:number;
-    individual_attack:number;
-    individual_defense:number;
-    individual_stamina:number;
-    perfection:number;
-    cp_multiplier:number;
-    favorite:boolean;
-    nickname:string;
+    fav:boolean;
 }
