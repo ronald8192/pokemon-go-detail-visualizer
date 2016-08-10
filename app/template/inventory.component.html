@@ -35,8 +35,8 @@
             <th (click)="sortPokemonBy(pokemons, 'iv_d')">IV-Defense</th>
             <th (click)="sortPokemonBy(pokemons, 'iv_s')">IV-Stamina</th>
             <th (click)="sortPokemonBy(pokemons, 'cp_mult')">CP Multiplier</th>
-            <th (click)="sortPokemonBy(pokemons, 'height')">Height(m)</th>
-            <th (click)="sortPokemonBy(pokemons, 'weight')">Weight(KG)</th>
+            <!--<th (click)="sortPokemonBy(pokemons, 'height')">Height(m)</th>-->
+            <!--<th (click)="sortPokemonBy(pokemons, 'weight')">Weight(KG)</th>-->
             <th (click)="sortPokemonBy(pokemons, 'fav')">Favourite</th>
             <th>Move 1</th>
             <th>Move 2</th>
@@ -54,8 +54,8 @@
             <td>{{pokemon.iv_d}}</td>
             <td>{{pokemon.iv_s}}</td>
             <td>{{pokemon.cp_mult}}</td>
-            <td>{{pokemon.height}}</td>
-            <td>{{pokemon.weight}}</td>
+            <!--<td>{{pokemon.height}}</td>-->
+            <!--<td>{{pokemon.weight}}</td>-->
             <td><img class="fav-star" *ngIf="pokemon.fav" src="./app/img/favourite.png" /></td>
             <td>{{pokemon.move_1}}</td>
             <td>{{pokemon.move_2}}</td>
