@@ -56,10 +56,10 @@
             <td>{{pokemon.cp_mult}}</td>
             <td>{{pokemon.height}}</td>
             <td>{{pokemon.weight}}</td>
-            <td>{{pokemon.fav?"Yes":"No"}}</td>
+            <td><img class="fav-star" *ngIf="pokemon.fav" src="./app/img/favourite.png" /></td>
             <td>{{pokemon.move_1}}</td>
             <td>{{pokemon.move_2}}</td>
-            <td>{{pokemon.created_at | date:"dd-MMM HH:mm a"}}</td>
+            <td>{{pokemon.created_at | date:"dd-MMM hh:mm a"}}</td>
         </tr>
     </table>
 </div>
