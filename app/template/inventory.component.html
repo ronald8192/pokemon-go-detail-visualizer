@@ -19,6 +19,60 @@
     </div>
 </form>
 
+<modal #pokeModal >
+    <modal-header>
+        <h4 class="modal-title">
+            {{ selectedPokemon.nickname ? selectedPokemon.nickname : pokeData[selectedIndex].name}} - ({{selectedPokemon.nickname ? pokeData[selectedPokemon.poke_id-1].name+", ":""}}{{chiName[selectedPokemon.poke_id-1] + ")"}}
+        </h4>
+    </modal-header>
+    <modal-body>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="col-sm-offset-2 col-sm-8 text-center detail-cp">CP: {{selectedPokemon.cp}}, Level: {{selectedPokemon.lv}}</div>
+                <div class="col-sm-2 text-right" *ngIf="selectedPokemon.fav"><img class="fav-star" src="./app/img/favourite.png" /></div>
+            </div>
+
+            <div class="col-sm-12 text-center">
+                <img class="poke-detail-img" src="app/img/pokemon/{{selectedPokemon.poke_id}}.png" *ngIf="selectedPokemon.poke_id">
+            </div>
+            <div class="text-center text-muted">{{selectedPokemon.created_at | date:"dd/MMM/yyyy  hh:mm:ss a"}} - {{selectedPokemon.height}} <small>m</small> , {{selectedPokemon.weight}} <small>kg</small></div>
+            <div class="text-center text-danger">{{pokemonTypes[pokeData[selectedIndex].type[0]]}}{{pokeData[selectedIndex].type[1] ? " / " + pokemonTypes[pokeData[selectedIndex].type[1]] : ""}}</div>
+        </div>
+        <hr />
+        <div class="row text-center">
+            <div class="col-xs-offset-2 col-xs-2">{{selectedPokemon.iv_a}}<br /><span class="text-muted">Attack</span></div>
+            <div class="col-xs-2">{{selectedPokemon.iv_d}}<br /><span class="text-muted">Defense</span></div>
+            <div class="col-xs-2">{{selectedPokemon.iv_s}}<br /><span class="text-muted">Stamina</span></div>
+            <div class="col-xs-2">{{selectedPokemon.iv | percent}}<br /><span class="text-muted">IV Score</span></div>
+        </div>
+
+        <hr />
+        <div class="row">
+            <div class="col-xs-6 text-right">Max CP: </div><div class="col-xs-4 text-info">{{selectedPokemon.max_cp }}</div>
+            <div class="col-xs-6 text-right">Max CP by you: </div><div class="col-xs-4 text-info">{{selectedPokemon.max_cp_fp }}</div>
+            <div class="col-xs-6 text-right">Max CP (full evolve + power up) by you:  </div><div class="col-xs-4 text-info">{{selectedPokemon.max_cp_fepufp }}</div>
+        </div>
+
+        <hr />
+        <div class="row">
+            <div class="col-xs-6 text-right">Move 1: </div><div class="col-xs-4 text-info">{{selectedPokemon.move_1 }}</div>
+            <div class="col-xs-6 text-right">Move 2: </div><div class="col-xs-4 text-info">{{selectedPokemon.move_2 }}</div>
+        </div>
+
+        <hr />
+        <div class="row">
+            <div class="col-xs-6 text-right">Absolute Max CP: </div><div class="col-xs-4 text-info">{{pokeData[selectedIndex].max_cp_abs }}</div>
+            <div class="col-xs-6 text-right">Base Catch Rate: </div><div class="col-xs-4 text-info">{{pokeData[selectedIndex].base.catch | percent }}</div>
+            <div class="col-xs-6 text-right">Base Flee Rate:  </div><div class="col-xs-4 text-info">{{pokeData[selectedIndex].base.flee | percent }}</div>
+            <div class="col-xs-6 text-right">Catch Rate After 20 Throw:  </div><div class="col-xs-4 text-info">{{pokeData[selectedIndex].catchRate | percent }}</div>
+        </div>
+
+    </modal-body>
+    <modal-footer>
+        <button type="button" class="btn btn-primary" (click)="pokeModal.close()">Close</button>
+    </modal-footer>
+</modal>
+
 <h4 *ngIf="pokemons.length>0">Click title to sort</h4>
 <div id="summary-container" class="row panel panel-default" *ngIf="pokemons.length>0" >
 
@@ -30,37 +84,36 @@
             <th (click)="sortPokemonBy(pokemons, 'nickname')">Nickname</th>
             <th (click)="sortPokemonBy(pokemons, 'lv')">LV</th>
             <th (click)="sortPokemonBy(pokemons, 'cp')">CP</th>
-            <th (click)="sortPokemonBy(pokemons, 'iv')">IV Score</th>
-            <th (click)="sortPokemonBy(pokemons, 'iv_a')">IV-Attack</th>
-            <th (click)="sortPokemonBy(pokemons, 'iv_d')">IV-Defense</th>
-            <th (click)="sortPokemonBy(pokemons, 'iv_s')">IV-Stamina</th>
-            <th (click)="sortPokemonBy(pokemons, 'cp_mult')">CP Multiplier</th>
-            <!--<th (click)="sortPokemonBy(pokemons, 'height')">Height(m)</th>-->
-            <!--<th (click)="sortPokemonBy(pokemons, 'weight')">Weight(KG)</th>-->
-            <th (click)="sortPokemonBy(pokemons, 'fav')">Favourite</th>
+            <th (click)="sortPokemonBy(pokemons, 'iv')"><span data-toggle="tooltip" data-placement="top" title="IV Score">IV %</span></th>
+            <th (click)="sortPokemonBy(pokemons, 'iv_a')"><span data-toggle="tooltip" data-placement="top" title="IV-Attack">IV-A</span></th>
+            <th (click)="sortPokemonBy(pokemons, 'iv_d')"><span data-toggle="tooltip" data-placement="top" title="IV-Defense">IV-D</span></th>
+            <th (click)="sortPokemonBy(pokemons, 'iv_s')"><span data-toggle="tooltip" data-placement="top" title="IV-Stamina">IV-S</span></th>
+            <th (click)="sortPokemonBy(pokemons, 'max_cp_for_player')"><span data-toggle="tooltip" data-placement="top" title="Absolute Max CP, Max CP by you">Max CP, by you</span></th>
+            <th (click)="sortPokemonBy(pokemons, 'fav')"><span data-toggle="tooltip" data-placement="top" title="Favourite">Fav</span></th>
             <th>Move 1</th>
             <th>Move 2</th>
             <th (click)="sortPokemonBy(pokemons, 'created_at')">Create Time</th>
+
         </tr>
         </thead>
-        <tr *ngFor="let pokemon of pokemons">
+        <tr *ngFor="let pokemon of pokemons" (click)="selectPokemon(pokemon)">
             <td>{{pokemon.poke_id}}</td>
-            <td><img src="app/img/pokemon/{{pokemon.poke_id}}.png" class="poke-img" />{{pokemon.name}}</td>
+            <td><img src="app/img/pokemon/{{pokemon.poke_id}}.png" class="poke-img" />{{pokeData[pokemon.poke_id-1].name}}</td>
             <td [class.text-muted]="!pokemon.nickname">{{pokemon.nickname?pokemon.nickname:'--'}}</td>
             <td>{{pokemon.lv}}</td>
-            <td>{{pokemon.cp}}</td>
-            <td>{{pokemon.iv | percent}}</td>
-            <td>{{pokemon.iv_a}}</td>
-            <td>{{pokemon.iv_d}}</td>
-            <td>{{pokemon.iv_s}}</td>
-            <td>{{pokemon.cp_mult}}</td>
-            <!--<td>{{pokemon.height}}</td>-->
-            <!--<td>{{pokemon.weight}}</td>-->
+            <td class="text-danger">{{pokemon.cp}}</td>
+            <td class="text-primary">{{pokemon.iv | percent}}</td>
+            <td class="text-info">{{pokemon.iv_a}}</td>
+            <td class="text-info">{{pokemon.iv_d}}</td>
+            <td class="text-info">{{pokemon.iv_s}}</td>
+            <td class="text-danger">{{pokemon.max_cp}}, {{pokemon.max_cp_fp}}</td>
             <td><img class="fav-star" *ngIf="pokemon.fav" src="./app/img/favourite.png" /></td>
             <td>{{pokemon.move_1}}</td>
             <td>{{pokemon.move_2}}</td>
             <td>{{pokemon.created_at | date:"dd-MMM hh:mm a"}}</td>
+
         </tr>
     </table>
 </div>
+
 

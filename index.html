@@ -20,6 +20,9 @@
     <script>
         System.import('app').catch(function(err){ console.error(err); });
         System.import('node_modules/bootstrap/dist/js/bootstrap.min.js').catch(function(err){ console.error(err); });
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
     </script>
 </head>
 <!-- 3. Display the application -->
