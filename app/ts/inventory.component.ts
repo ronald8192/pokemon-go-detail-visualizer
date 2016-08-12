@@ -42,9 +42,13 @@ export class InventoryComponent implements OnInit, AfterViewInit{
     }
 
     ngAfterViewInit() {
-        $(function () {
-            $('[data-toggle="tooltip"]').tooltip()
-        })
+        this.initToolTip();
+    }
+
+    private initToolTip():void{
+        setTimeout(()=>{
+            $('[data-toggle="tooltip"]').tooltip();
+        },1);
     }
 
     doCalculate():void{
@@ -57,11 +61,13 @@ export class InventoryComponent implements OnInit, AfterViewInit{
                 //     pokemon.name = PokemonData[pokemon.poke_id-1].name;
                 // }
                 this.pokemons = this.sortPokemonBy(pokemons, "iv");
+                this.jsonString = "";
+                this.initToolTip();
             }catch (e){
                 console.log(e);
                 this.errorMessage = "Invalid JSON!"
             }
-            this.jsonString = "";
+
         }
 
     }

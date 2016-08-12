@@ -96,7 +96,7 @@
 
         </tr>
         </thead>
-        <tr *ngFor="let pokemon of pokemons" (click)="selectPokemon(pokemon)">
+        <tr *ngFor="let pokemon of pokemons" (click)="selectPokemon(pokemon)" class="pokemon-row">
             <td>{{pokemon.poke_id}}</td>
             <td><img src="app/img/pokemon/{{pokemon.poke_id}}.png" class="poke-img" />{{pokeData[pokemon.poke_id-1].name}}</td>
             <td [class.text-muted]="!pokemon.nickname">{{pokemon.nickname?pokemon.nickname:'--'}}</td>
