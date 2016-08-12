@@ -34,9 +34,12 @@ var InventoryComponent = (function () {
         // this.doCalculate();
     };
     InventoryComponent.prototype.ngAfterViewInit = function () {
-        $(function () {
+        this.initToolTip();
+    };
+    InventoryComponent.prototype.initToolTip = function () {
+        setTimeout(function () {
             $('[data-toggle="tooltip"]').tooltip();
-        });
+        }, 1);
     };
     InventoryComponent.prototype.doCalculate = function () {
         if (this.jsonString != '') {
@@ -48,12 +51,13 @@ var InventoryComponent = (function () {
                 //     pokemon.name = PokemonData[pokemon.poke_id-1].name;
                 // }
                 this.pokemons = this.sortPokemonBy(pokemons, "iv");
+                this.jsonString = "";
+                this.initToolTip();
             }
             catch (e) {
                 console.log(e);
                 this.errorMessage = "Invalid JSON!";
             }
-            this.jsonString = "";
         }
     };
     InventoryComponent.prototype.sortPokemonBy = function (pokemons, criteria) {
