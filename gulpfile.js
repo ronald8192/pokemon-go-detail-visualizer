@@ -63,7 +63,7 @@ gulp.task('minify-js', function() {
         .pipe(plumber())
         .pipe(minify({
             ext:{
-                src:'-debug.js',
+                // src:'-debug.js',
                 min:'.js'
             },
             mangle:true, //mangling names
