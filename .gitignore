@@ -3,8 +3,6 @@ gulpfile.js
 tsconfig.json
 typings.json
 typings/
-app/css/
 app/scss/
-app/js/
 app/ts/
 **/*.map
