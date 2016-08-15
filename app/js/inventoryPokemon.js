@@ -1,6 +1,7 @@
 "use strict";
 var InventoryPokemon = (function () {
     function InventoryPokemon() {
+        this.display = true;
     }
     return InventoryPokemon;
 }());

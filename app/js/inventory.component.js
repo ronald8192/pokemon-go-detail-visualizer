@@ -17,6 +17,7 @@ var PokemonTypeList_1 = require("./PokemonTypeList");
 var InventoryComponent = (function () {
     function InventoryComponent() {
         this.jsonString = '';
+        this.nameFilter = "";
         this.pokemons = [];
         this.selectedPokemon = null;
         this.selectedIndex = 0; // need this because cannot access selectedPokemon.poke_id in html (pokeData[selectedPokemon.poke_id].name --> TypeError: Cannot read property 'name' of undefined), bug?
@@ -46,12 +47,8 @@ var InventoryComponent = (function () {
             var pokemons;
             try {
                 pokemons = JSON.parse(this.jsonString).pokemons;
-                // for(let pokemon of pokemons){
-                //     // pokemon.iv = (pokemon.iv_a + pokemon.iv_d + pokemon.iv_s)/45;
-                //     pokemon.name = PokemonData[pokemon.poke_id-1].name;
-                // }
-                this.pokemons = this.sortPokemonBy(pokemons, "iv");
                 this.jsonString = "";
+                this.pokemons = this.sortPokemonBy(pokemons, "iv");
                 this.initToolTip();
             }
             catch (e) {
@@ -59,6 +56,10 @@ var InventoryComponent = (function () {
                 this.errorMessage = "Invalid JSON!";
             }
         }
+    };
+    InventoryComponent.prototype.filter = function (poke_id) {
+        console.log(pokemonData_1.PokemonData[poke_id - 1].name.toLowerCase().indexOf(this.nameFilter.toLowerCase()) >= 0);
+        return pokemonData_1.PokemonData[poke_id - 1].name.toLowerCase().indexOf(this.nameFilter.toLowerCase()) >= 0;
     };
     InventoryComponent.prototype.sortPokemonBy = function (pokemons, criteria) {
         if (criteria == this.orderBy) {

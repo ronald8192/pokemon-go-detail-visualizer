@@ -74,6 +74,13 @@
 </modal>
 
 <h4 *ngIf="pokemons.length>0">Click title to sort</h4>
+
+<div class="form-inline form-group">
+    <!--<h4 *ngIf="pokemons.length>0"><input type="text" class="form-control"/></h4>-->
+    <label for="name-filter">Filter by name:</label>
+    <input type="text" class="form-control" id="name-filter" placeholder="pikachu" [(ngModel)]="nameFilter" />
+</div>
+
 <div id="summary-container" class="row panel panel-default" *ngIf="pokemons.length>0" >
 
     <table class="table table-striped table-hover panel-body">
@@ -96,7 +103,7 @@
 
         </tr>
         </thead>
-        <tr *ngFor="let pokemon of pokemons" (click)="selectPokemon(pokemon)" class="pokemon-row">
+        <tr *ngFor="let pokemon of pokemons" (click)="selectPokemon(pokemon)" class="pokemon-row" [class.hidden]="!filter(pokemon.poke_id)" >
             <td>{{pokemon.poke_id}}</td>
             <td><img src="app/img/pokemon/{{pokemon.poke_id}}.png" class="poke-img" />{{pokeData[pokemon.poke_id-1].name}}</td>
             <td [class.text-muted]="!pokemon.nickname">{{pokemon.nickname?pokemon.nickname:'--'}}</td>
@@ -112,8 +119,8 @@
             <td>{{pokemon.move_2}}</td>
             <td>{{pokemon.created_at | date:"dd-MMM hh:mm a"}}</td>
 
+
         </tr>
     </table>
+
 </div>
-
-
